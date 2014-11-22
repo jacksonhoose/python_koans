@@ -56,7 +56,7 @@ def score(dice):
             else:
                 score += number * 100
 
-            if count > 3 and [1,5].index(number):
+            if count > 3 and [1,5].index(number) >= 0:
                 diff = count - 3
                 while(diff):
                     if number is 1:
@@ -64,6 +64,7 @@ def score(dice):
                     else:
                         score = add_to_score(score, 50)
                     diff -= 1
+
         elif number is 1 or number is 5:
             for x in sorted_rolls[number]:
                 if number is 1:
