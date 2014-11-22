@@ -35,7 +35,7 @@ class AboutMonkeyPatching(Koan):
         except Exception as ex:
             err_msg = ex.args[0]
 
-        self.assertRegexpMatches(err_msg, __)
+        self.assertRegexpMatches(err_msg, "set attributes of")
 
     # ------------------------------------------------------------------
 
@@ -44,6 +44,6 @@ class AboutMonkeyPatching(Koan):
     def test_subclasses_of_built_in_classes_can_be_be_monkey_patched(self):
         self.MyInt.is_even = lambda self: (self % 2) == 0
 
-        self.assertEqual(__, self.MyInt(1).is_even())
-        self.assertEqual(__, self.MyInt(2).is_even())
+        self.assertEqual(False, self.MyInt(1).is_even())
+        self.assertEqual(True, self.MyInt(2).is_even())
 
