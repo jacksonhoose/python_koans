@@ -39,8 +39,9 @@ def score(dice):
 
     if len(dice) is 0: return 0
 
-    add_to_score = lambda score, n: score + n
-
+    def add_to_score(score, points):
+        return score + points
+   
     for number in dice:
         if number in sorted_rolls:
             sorted_rolls[number].append(number)
@@ -56,11 +57,13 @@ def score(dice):
                 score += number * 100
 
             if count > 3 and [1,5].index(number):
-                for x in range(1, count - 1):
+                diff = count - 3
+                while(diff):
                     if number is 1:
                         score = add_to_score(score, 100)
                     else:
                         score = add_to_score(score, 50)
+                    diff -= 1
         elif number is 1 or number is 5:
             for x in sorted_rolls[number]:
                 if number is 1:
